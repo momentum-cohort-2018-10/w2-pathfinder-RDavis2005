@@ -22,28 +22,22 @@ class List:
         min_elevation = (max(flattened_list))
         max_elevation = (min(flattened_list))
 
+    #Converts nested list into RGB values
+    def elevations_to_colors(number):
+        min_elevation = 3139
+        max_elevation = 5648
 
-
-
-        #Converts nested list into RGB values
-        def elevations_to_colors(number):
-            min_elevation = 3139
-            max_elevation = 5648
-
-            rgb_code = [[round(int(y) - min_elevation) / (max_elevation - min_elevation) * 255 for y in x] for x in number]
-            return [[round(i) for i in rgb_code] for rgb_code in rgb_code]
-        
-        #print(elevations_to_colors(heights_list))
-        
-        
-        
-        def image(list):
+        rgb_code = [[round(int(y) - min_elevation) / (max_elevation - min_elevation) * 255 for y in x] for x in number]
+        return [[round(i) for i in rgb_code] for rgb_code in rgb_code]
+    
+    #print(elevations_to_colors(heights_list))
+    
+    def image(list):
         list = rgb_code
         plot = Image.new("RGB", (600, 600))
         for y, row in enumerate(rgb_code):
             for x, value, in enumerate(row):
                 plot.putpixel((x, y), (value, value, value))
+
         plot.save('plotmap.png')
         plot.show('plotmap.png')
-
-    
